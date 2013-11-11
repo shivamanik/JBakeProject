@@ -9,3 +9,10 @@
 /launcher/target/
 /plugins/target/
 /service/target/
+/target/
+
+/api/dist/
+/launcher/dist/
+/plugins/dist/
+/service/dist/
+/dist
