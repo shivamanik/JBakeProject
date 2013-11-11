@@ -4,3 +4,8 @@
 *.jar
 *.war
 *.ear
+
+/api/target/
+/launcher/target/
+/plugins/target/
+/service/target/
