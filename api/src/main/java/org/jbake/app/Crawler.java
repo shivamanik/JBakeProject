@@ -52,16 +52,15 @@ public class Crawler {
         File[] contents = path.listFiles(FileUtil.getFileFilter());
         if (contents != null) {
             Arrays.sort(contents);
-            for (int i = 0; i < contents.length; i++) {
-                if (contents[i].isFile()) {
-                    System.out.print("Processing [" + contents[i].getPath() + "]... ");
-                    Map<String, Object> fileContents = parser.processFile(contents[i]);
+            for (File content : contents) {
+                if (content.isFile()) {
+                    System.out.print("Processing [" + content.getPath() + "]... ");
+                    Map<String, Object> fileContents = parser.processFile(content);
                     if (fileContents != null) {
-                        fileContents.put("file", contents[i].getPath());
-                        String uri = contents[i].getPath().replace(source.getPath() + File.separator + config.getString("content.folder"), "");
+                        fileContents.put("file", content.getPath());
+                        String uri = content.getPath().replace(source.getPath() + File.separator + config.getString("content.folder"), "");
                         uri = uri.substring(0, uri.lastIndexOf("."));
                         fileContents.put("uri", uri + config.getString("output.extension"));
-
                         if (fileContents.get("type").equals("page")) {
                             pages.add(fileContents);
                         } else {
@@ -74,9 +73,9 @@ public class Crawler {
                                     if (postsByTags.containsKey(tag)) {
                                         postsByTags.get(tag).add(fileContents);
                                     } else {
-                                        List<Map<String, Object>> posts = new ArrayList<Map<String, Object>>();
-                                        posts.add(fileContents);
-                                        postsByTags.put(tag, posts);
+                                        List<Map<String, Object>> posts1 = new ArrayList<Map<String, Object>>();
+                                        posts1.add(fileContents);
+                                        postsByTags.put(tag, posts1);
                                     }
                                 }
                             }
@@ -92,9 +91,8 @@ public class Crawler {
                         System.out.println("done!");
                     }
                 }
-
-                if (contents[i].isDirectory()) {
-                    crawl(contents[i]);
+                if (content.isDirectory()) {
+                    crawl(content);
                 }
             }
         }
