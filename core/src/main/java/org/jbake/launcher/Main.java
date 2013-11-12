@@ -62,7 +62,7 @@ public class Main {
 
             System.out.println("JBake " + config.getString("version") + " (" + config.getString("build.timestamp") + ") [http://jbake.org]");
             System.out.println();
-            
+
             if (res.isListPlugin()) {
                 listAllPlugins();
             }
@@ -120,8 +120,8 @@ public class Main {
     }
 
     private void listAllPlugins() {
-      System.out.println("Installed Plugins:");
-      System.out.println("******************:");
+        System.out.println("Installed Plugins:");
+        System.out.println("******************:");
         JBakePluginServiceFactory.getDefaultPluginService().invokePlugins();
     }
 }

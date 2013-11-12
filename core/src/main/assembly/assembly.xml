@@ -2,7 +2,8 @@
     <id>bin</id>
     <!-- Generates a zip package containing the needed files -->
     <formats>
-        <format>zip</format>
+        <!-- <format>zip</format> -->
+        <format>dir</format>
     </formats>
 
     <!-- Adds dependencies to zip package under lib directory -->
@@ -12,18 +13,44 @@
                 Project artifact is not copied under library directory since
                 it is added to the root directory of the zip package.
             -->
-            <useProjectArtifact>false</useProjectArtifact>
+            <useProjectArtifact>true</useProjectArtifact>
             <outputDirectory>lib</outputDirectory>
             <unpack>false</unpack>
+            <excludes>
+                <exclude>org.jbake:jbake-core:jar:*</exclude>
+            </excludes>
         </dependencySet>
+        
     </dependencySets>
+    
+    
 
     <fileSets>
-	<!--
+        
+       
+            <fileSet>
+                <directory>./</directory>
+                <outputDirectory>plugins</outputDirectory>
+                <excludes>
+                    <exclude>*/**</exclude>
+                </excludes>
+            </fileSet>
+      
+        
+     
+            <fileSet>
+                <directory>./</directory>
+                <outputDirectory>plugins/lib</outputDirectory>
+                <excludes>
+                    <exclude>*/**</exclude>
+                </excludes>
+            </fileSet>
+     
+        <!--
            Adds startup scripts to the root directory of zip package. The startup
            scripts are located to src/main/scripts directory as stated by Maven
            conventions.
-	-->
+        -->
         <fileSet>
             <directory>${project.build.scriptSourceDirectory}</directory>
             <outputDirectory></outputDirectory>
@@ -47,8 +74,8 @@
             </includes>
         </fileSet>
         <fileSet>
-        	<directory>${basedir}/src/main/templates/</directory>
-        	<outputDirectory></outputDirectory>
+            <directory>${basedir}/src/main/templates/</directory>
+            <outputDirectory></outputDirectory>
             <includes>
                 <include>base*</include>
             </includes>

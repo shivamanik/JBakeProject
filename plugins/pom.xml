@@ -1,61 +1,35 @@
 <?xml version="1.0"?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.jbake</groupId>
+        <artifactId>JBake</artifactId>
+        <version>3.0-SNAPSHOT</version>
+    </parent>
     <groupId>org.jbake</groupId>
-    <artifactId>JBake</artifactId>
+    <artifactId>jbake-plugins</artifactId>
     <version>3.0-SNAPSHOT</version>
-  </parent>
-  <groupId>org.jbake</groupId>
-  <artifactId>plugins</artifactId>
-  <version>3.0-SNAPSHOT</version>
-  <name>JBake - Plugins</name>
-  <url>http://maven.apache.org</url>
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-  <dependencies>
-    <dependency>
+    <name>JBake - Plugins</name>
+    <url>http://maven.apache.org</url>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <dependencies>
+       <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+	  <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>api</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-  </dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>jbake-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
   
   
-      <build>
-        <plugins>
-  <plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<version>2.4</version>
-	            <configuration>
-					<outputDirectory>dist</outputDirectory>
-					<finalName>jbake-${project.version}</finalName>
-	                <descriptors>
-						<descriptor>src/main/assembly/assembly.xml</descriptor>
-	                </descriptors>
-	                <attach>false</attach>
-	            </configuration>
-	            <executions>
-					<execution>
-						<id>make-assembly</id>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-					</execution>
-				</executions>
-        	</plugin>
-        </plugins>
-    </build>
-  
+   
   
 </project>

@@ -6,12 +6,12 @@
 package org.jbake.service.plugin.impl;
 
 import java.io.File;
+import java.util.Iterator;
 import org.jbake.service.plugin.JBakePluginService;
 
-import java.util.Iterator;
 import java.util.ServiceLoader;
-import java.util.logging.Logger;
 import org.apache.commons.configuration.CompositeConfiguration;
+import org.apache.log4j.Logger;
 import org.jbake.api.plugin.AbstractJBakePlugin;
 import org.jbake.app.Crawler;
 
@@ -57,15 +57,16 @@ public class DefaultJBakePluginService implements JBakePluginService {
     @Override
     public void imvokePlugins(Crawler crawler, CompositeConfiguration config, File projectFolder, File outputFolder) {
         Iterator<AbstractJBakePlugin> iterator = getPlugins();
-
+        logger.info("Plugin Process called!!!");
         while (iterator.hasNext()) {
+
             AbstractJBakePlugin bakePlugin = iterator.next();
-            
+            logger.info("Executing the plugin - " + bakePlugin.getPluginName());
             bakePlugin.setConfig(config);
             bakePlugin.setCrawler(crawler);
             bakePlugin.setOutputFolder(outputFolder);
             bakePlugin.setProjectFolder(projectFolder);
-            
+
             bakePlugin.execute();
         }
     }
