@@ -28,4 +28,34 @@
       <version>${project.version}</version>
     </dependency>
   </dependencies>
+  
+  
+      <build>
+        <plugins>
+  <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.4</version>
+	            <configuration>
+					<outputDirectory>dist</outputDirectory>
+					<finalName>jbake-${project.version}</finalName>
+	                <descriptors>
+						<descriptor>src/main/assembly/assembly.xml</descriptor>
+	                </descriptors>
+	                <attach>false</attach>
+	            </configuration>
+	            <executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+        	</plugin>
+        </plugins>
+    </build>
+  
+  
 </project>
