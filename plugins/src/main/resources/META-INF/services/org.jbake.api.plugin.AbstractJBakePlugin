@@ -1,2 +1,3 @@
 org.jbake.plugin.sitemap.SiteMapPlugin
-org.jbake.plugin.ftp.FTPPlugin
+org.jbake.plugin.archive.ArchivePlugin
+org.jbake.plugin.feed.FeedPlugin
