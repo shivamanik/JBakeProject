@@ -1,10 +1,7 @@
 package org.jbake.service.plugin;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.logging.Logger;
 import org.jbake.service.plugin.impl.DefaultJBakePluginService;
-import org.jbake.service.plugin.utils.PluginServiceUtil;
 
 /**
  *
