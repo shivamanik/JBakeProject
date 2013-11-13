@@ -44,7 +44,7 @@ public class DefaultJBakePluginService implements JBakePluginService {
 
     //    TODO: This method need to have parameter of pages,posts etc. Or may be one Context object contain all the objects.
     @Override
-    public void invokePlugins() {
+    public void listPlugins() {
         Iterator<AbstractJBakePlugin> iterator = getPlugins();
 
         while (iterator.hasNext()) {
@@ -55,7 +55,7 @@ public class DefaultJBakePluginService implements JBakePluginService {
     }
 
     @Override
-    public void imvokePlugins(Crawler crawler, CompositeConfiguration config, File projectFolder, File outputFolder) {
+    public void invokePlugins(Crawler crawler, CompositeConfiguration config, File projectFolder, File outputFolder) {
         Iterator<AbstractJBakePlugin> iterator = getPlugins();
         logger.info("Plugin Process called!!!");
         while (iterator.hasNext()) {

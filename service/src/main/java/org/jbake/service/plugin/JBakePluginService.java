@@ -15,7 +15,7 @@ public interface JBakePluginService {
 
     Iterator<AbstractJBakePlugin> getPlugins();
 
-    void invokePlugins();
+    void listPlugins();
     
-    void imvokePlugins(final Crawler crawler,final CompositeConfiguration config,File projectFolder, File outputFolder );
+    void invokePlugins(final Crawler crawler,final CompositeConfiguration config,File projectFolder, File outputFolder );
 }

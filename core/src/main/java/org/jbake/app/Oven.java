@@ -169,7 +169,7 @@ public class Oven {
             renderer.renderTags(crawler.getPostsByTags(), config.getString("tag.path"));
         }
 
-        JBakePluginServiceFactory.getDefaultPluginService().imvokePlugins(crawler, config, source, destination);
+        JBakePluginServiceFactory.getDefaultPluginService().invokePlugins(crawler, config, source, destination);
 
         // copy assets
         Asset asset = new Asset(source, destination);
