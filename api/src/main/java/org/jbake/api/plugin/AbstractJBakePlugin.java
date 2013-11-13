@@ -51,8 +51,39 @@ public abstract class AbstractJBakePlugin {
         this.outputFolder = outputFolder;
     }
 
+    /**
+     * This method tells the core plugin service about the plugin.
+     *
+     * @return String The name of the plugin.
+     */
     public abstract String getPluginName();
 
+    /**
+     * Main executable method for the plugin.
+     */
     public abstract void execute();
+
+    /**
+     * Initialize method for the plugin.
+     */
+    public abstract void init();
+
+    /**
+     * Empty method used by the child classes to provide content to append to main header content
+     * 
+     * @return String content to append to each header
+     */
+    public String provideContetToHeader() {
+        return null;
+    }
+
+     /**
+     * Empty method used by the child classes to provide content to append to main footer content
+     * 
+     * @return String content to append to each footer
+     */
+    public String provideContetToFooter() {
+        return null;
+    }
 
 }
