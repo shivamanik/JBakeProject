@@ -23,5 +23,10 @@ public class ArchivePlugin extends AbstractJBakePlugin  {
     public void execute() {
         
     }
+
+    @Override
+    public void init() {
+       
+    }
     
 }

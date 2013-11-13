@@ -40,4 +40,9 @@ public class SiteMapPlugin extends AbstractJBakePlugin {
 
     }
 
+    @Override
+    public void init() {
+
+    }
+
 }
