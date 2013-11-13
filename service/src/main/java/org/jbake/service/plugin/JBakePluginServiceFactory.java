@@ -15,23 +15,23 @@ import org.jbake.service.plugin.utils.PluginServiceUtil;
 public class JBakePluginServiceFactory {
 
     private static final Logger logger = Logger.getLogger(JBakePluginServiceFactory.class.getName());
+    /*
+     // TODO: We need to use this class in two ways. 1. Read from 'plugins' folder to get plugins 2. Do not use plugins folder instead just read from classpath. (Used to running from maven.)
+     private static void addPluginJarsToApp() {
+     try {
+     PluginServiceUtil.initializePluginJars(new File("plugins"));
+     } catch (IOException ioException) {
 
-    // TODO: We need to use this class in two ways. 1. Read from 'plugins' folder to get plugins 2. Do not use plugins folder instead just read from classpath. (Used to running from maven.)
-    private static void addPluginJarsToApp() {
-        try {
-            PluginServiceUtil.initializePluginJars(new File("plugins"));
-        } catch (IOException ioException) {
+     }
+     }
 
-        }
-    }
+     public static JBakePluginService createPluginService() {
+     addPluginJarsToApp();
+     return DefaultJBakePluginService.getInstance();
+     }*/
 
-    public static JBakePluginService createPluginService() {
-        addPluginJarsToApp();
-        return DefaultJBakePluginService.getInstance();
-    }
-    
     public static JBakePluginService getDefaultPluginService() {
-      
+
         return DefaultJBakePluginService.getInstance();
     }
 
