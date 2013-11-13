@@ -121,7 +121,8 @@ public class Main {
 
     private void listAllPlugins() {
         System.out.println("Installed Plugins:");
-        System.out.println("******************:");
+        System.out.println("********************");
         JBakePluginServiceFactory.getDefaultPluginService().listPlugins();
+        System.exit(0);
     }
 }
