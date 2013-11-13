@@ -66,7 +66,7 @@ public class DefaultJBakePluginService implements JBakePluginService {
             bakePlugin.setCrawler(crawler);
             bakePlugin.setOutputFolder(outputFolder);
             bakePlugin.setProjectFolder(projectFolder);
-
+            bakePlugin.init();
             bakePlugin.execute();
         }
     }
