@@ -32,5 +32,5 @@ public interface JBakePluginService {
      * @param projectFolder Current site folder
      * @param outputFolder output folder of the site
      */
-    void invokePlugins(final Crawler crawler, final CompositeConfiguration config, File projectFolder, File outputFolder);
+    void invokePlugins(final Crawler crawler, final CompositeConfiguration config, File projectFolder, File outputFolder, File assetFolder, File templateFolder,File contentFolder);
 }

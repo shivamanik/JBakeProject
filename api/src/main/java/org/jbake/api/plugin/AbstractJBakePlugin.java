@@ -18,6 +18,9 @@ public abstract class AbstractJBakePlugin {
     private CompositeConfiguration config;
     private File projectFolder;
     private File outputFolder;
+    private File assetFolder;
+    private File templateFolder;
+    private File contentFolder;
 
     public Crawler getCrawler() {
         return crawler;
@@ -51,6 +54,32 @@ public abstract class AbstractJBakePlugin {
         this.outputFolder = outputFolder;
     }
 
+    public final File getAssetFolder() {
+        return assetFolder;
+    }
+
+    public final void setAssetFolder(File assetFolder) {
+        this.assetFolder = assetFolder;
+    }
+
+    public final File getTemplateFolder() {
+        return templateFolder;
+    }
+
+    public final void setTemplateFolder(File templateFolder) {
+        this.templateFolder = templateFolder;
+    }
+
+    public final File getContentFolder() {
+        return contentFolder;
+    }
+
+    public final void setContentFolder(File contentFolder) {
+        this.contentFolder = contentFolder;
+    }
+    
+    
+
     /**
      * This method tells the core plugin service about the plugin.
      *
@@ -70,19 +99,19 @@ public abstract class AbstractJBakePlugin {
 
     /**
      * Empty method used by the child classes to provide content to append to main header content
-     * 
+     *
      * @return String content to append to each header
      */
-    public String provideContetToHeader() {
+    public String provideHeaderContent() {
         return null;
     }
 
-     /**
+    /**
      * Empty method used by the child classes to provide content to append to main footer content
-     * 
+     *
      * @return String content to append to each footer
      */
-    public String provideContetToFooter() {
+    public String provideFooterContent() {
         return null;
     }
 

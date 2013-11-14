@@ -1,7 +1,5 @@
 package org.jbake.app;
 
-
-
 import java.io.File;
 import java.util.Collections;
 import java.util.Date;
@@ -169,7 +167,7 @@ public class Oven {
             renderer.renderTags(crawler.getPostsByTags(), config.getString("tag.path"));
         }
 
-        JBakePluginServiceFactory.getDefaultPluginService().invokePlugins(crawler, config, source, destination);
+        JBakePluginServiceFactory.getDefaultPluginService().invokePlugins(crawler, config, source, destination, assetsPath, templatesPath, contentsPath);
 
         // copy assets
         Asset asset = new Asset(source, destination);

@@ -55,17 +55,20 @@ public class DefaultJBakePluginService implements JBakePluginService {
     }
 
     @Override
-    public void invokePlugins(Crawler crawler, CompositeConfiguration config, File projectFolder, File outputFolder) {
+    public void invokePlugins(Crawler crawler, CompositeConfiguration config, File projectFolder, File outputFolder, File assetFolder, File templateFolder,File contentFolder) {
         Iterator<AbstractJBakePlugin> iterator = getPlugins();
-        logger.info("Plugin Process called!!!");
-        while (iterator.hasNext()) {
 
+        while (iterator.hasNext()) {
             AbstractJBakePlugin bakePlugin = iterator.next();
-            logger.info("Executing the plugin - " + bakePlugin.getPluginName());
+            
             bakePlugin.setConfig(config);
             bakePlugin.setCrawler(crawler);
             bakePlugin.setOutputFolder(outputFolder);
             bakePlugin.setProjectFolder(projectFolder);
+            bakePlugin.setAssetFolder(assetFolder);
+            bakePlugin.setTemplateFolder(templateFolder);
+            bakePlugin.setContentFolder(contentFolder);
+            
             bakePlugin.init();
             bakePlugin.execute();
         }
