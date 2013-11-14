@@ -153,9 +153,9 @@ public class Oven {
         }
 
         // write feed file
-        if (config.getBoolean("render.feed")) {
+    /*    if (config.getBoolean("render.feed")) {
             renderer.renderFeed(publishedPosts, config.getString("feed.file"));
-        }
+        }*/
 
         // write master archive file
         if (config.getBoolean("render.archive")) {
