@@ -158,9 +158,9 @@ public class Oven {
         }*/
 
         // write master archive file
-        if (config.getBoolean("render.archive")) {
+      /*  if (config.getBoolean("render.archive")) {
             renderer.renderArchive(publishedPosts, config.getString("archive.file"));
-        }
+        }*/
 
         // write tag files 
         if (config.getBoolean("render.tags")) {

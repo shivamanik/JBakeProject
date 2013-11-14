@@ -18,6 +18,7 @@ import java.util.Iterator;
 import java.util.Map;
 import org.jbake.api.plugin.AbstractJBakePlugin;
 import org.jbake.app.Renderer;
+import org.jbake.plugin.helper.RendererHelper;
 
 /**
  *
@@ -36,48 +37,21 @@ public class FeedPlugin extends AbstractJBakePlugin {
     @Override
     public void execute() {
 
-        File outputFile = new File(getOutputFolder().getPath() + File.separator + "feed.xml");
+        File outputFile = new File(getOutputFolder().getPath() + File.separator +  getConfig().getString("feed.file"));
         System.out.print("Rendering feed [" + outputFile + "]... ");
         Map<String, Object> model = new HashMap<String, Object>();
         model.put("published_posts", getCrawler().getPosts());
         model.put("published_date", new Date());
 
         try {
-            render(model, "feed.ftl", outputFile);
+            RendererHelper rendererHelper = new RendererHelper(getCrawler(), getConfig());
+            rendererHelper.render(model, "feed.ftl", outputFile);
             System.out.println("done!");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("failed!");
         }
 
-    }
-
-    private void render(Map<String, Object> model, String templateFilename, File outputFile) throws Exception {
-        model.put("version", getConfig().getString("version"));
-        model.put("posts", getCrawler().getPosts());
-        model.put("pages", getCrawler().getPages());
-        Map<String, Object> configModel = new HashMap<String, Object>();
-        Iterator<String> configKeys = getConfig().getKeys();
-        while (configKeys.hasNext()) {
-            String key = configKeys.next();
-            //replace "." in key so you can use dot notation in templates
-            configModel.put(key.replace(".", "_"), getConfig().getProperty(key));
-        }
-        model.put("config", configModel);
-        Template template = null;
-
-        templateCfg = new Configuration();
-        templateCfg.setTemplateLoader(new ClassTemplateLoader((this.getClass()), "/templates"));
-        template = templateCfg.getTemplate(templateFilename);
-
-        if (!outputFile.exists()) {
-            outputFile.getParentFile().mkdirs();
-            outputFile.createNewFile();
-        }
-
-        Writer out = new OutputStreamWriter(new FileOutputStream(outputFile));
-        template.process(model, out);
-        out.close();
     }
 
     @Override

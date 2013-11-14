@@ -5,16 +5,24 @@
  */
 package org.jbake.plugin.sitemap;
 
-import java.util.List;
+import freemarker.template.Configuration;
+import java.io.File;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 import org.jbake.api.plugin.AbstractJBakePlugin;
+import org.jbake.app.Renderer;
+import org.jbake.plugin.helper.RendererHelper;
 
 /**
  *
  * @author Rajmahendra Hegde <rajmahendra@gmail.com>
  */
 public class SiteMapPlugin extends AbstractJBakePlugin {
+    
+        Renderer renderer;
+    private Configuration templateCfg;
+
 
     //TODO: All thise plugin impl need to get all necessary object of the JBake framework.
     @Override
@@ -24,18 +32,20 @@ public class SiteMapPlugin extends AbstractJBakePlugin {
 
     @Override
     public void execute() {
-        System.out.println(getPluginName() + ": " + getCrawler().getPosts().size() + " Posts found in the project");
-        System.out.println(getPluginName() + ": " + getCrawler().getPages().size() + " Pages found in the project");
+        File outputFile = new File(getOutputFolder().getPath() + File.separator + "sitemapt.xml");
+        System.out.print("Rendering sitemap [" + outputFile + "]... ");
+        Map<String, Object> model = new HashMap<String, Object>();
+        model.put("published_posts", getCrawler().getPosts());
+        model.put("published_pages", getCrawler().getPages());
+        model.put("published_date", new Date());
 
-        List<Map<String, Object>> list = getCrawler().getPosts();
-
-        for (Map<String, Object> map : list) {
-            Set<String> vlist = map.keySet();
-
-            for (Object ob : vlist) {
-                // System.out.println(ob + " = " + map.get(ob));
-            }
-            //System.out.println("**********************************");
+        try {
+            RendererHelper rendererHelper = new RendererHelper(getCrawler(), getConfig());
+            rendererHelper.render(model, "sitemap.ftl", outputFile);
+            System.out.println("done!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("failed!");
         }
 
     }
@@ -43,6 +53,7 @@ public class SiteMapPlugin extends AbstractJBakePlugin {
     @Override
     public void init() {
 
+        renderer = new Renderer(getProjectFolder(), getOutputFolder(), getTemplateFolder(), getConfig(), getCrawler().getPosts(), getCrawler().getPages());
     }
 
 }
