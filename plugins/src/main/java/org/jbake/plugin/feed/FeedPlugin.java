@@ -5,16 +5,10 @@
  */
 package org.jbake.plugin.feed;
 
-import freemarker.cache.ClassTemplateLoader;
 import freemarker.template.Configuration;
-import freemarker.template.Template;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import org.jbake.api.plugin.AbstractJBakePlugin;
 import org.jbake.app.Renderer;
