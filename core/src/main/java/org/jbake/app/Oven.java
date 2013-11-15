@@ -5,12 +5,12 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
+import static org.apache.commons.lang.StringUtils.defaultString;
 import org.apache.commons.configuration.CompositeConfiguration;
 import org.jbake.api.util.ConfigUtil;
 import org.jbake.api.util.FileUtil;
 import org.jbake.api.util.SortUtil;
-
+import org.jbake.app.JBakeDefaults;
 import static org.jbake.api.util.SortUtil.REVERSE;
 import org.jbake.service.plugin.JBakePluginServiceFactory;
 
@@ -60,7 +60,7 @@ public class Oven {
 
     private void ensureDestination() throws Exception {
         if (null == destination) {
-            destination = new File(config.getString("destination.folder"));
+            destination = new File(defaultString(config.getString("destination.folder"), JBakeDefaults.DESTINATION_FOLDER));
         }
         if (!destination.exists()) {
             destination.mkdirs();
@@ -154,14 +154,12 @@ public class Oven {
 
         // write feed file
     /*    if (config.getBoolean("render.feed")) {
-            renderer.renderFeed(publishedPosts, config.getString("feed.file"));
-        }*/
-
+         renderer.renderFeed(publishedPosts, config.getString("feed.file"));
+         }*/
         // write master archive file
       /*  if (config.getBoolean("render.archive")) {
-            renderer.renderArchive(publishedPosts, config.getString("archive.file"));
-        }*/
-
+         renderer.renderArchive(publishedPosts, config.getString("archive.file"));
+         }*/
         // write tag files 
         if (config.getBoolean("render.tags")) {
             renderer.renderTags(crawler.getPostsByTags(), config.getString("tag.path"));
