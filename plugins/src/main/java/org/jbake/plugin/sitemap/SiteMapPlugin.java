@@ -32,7 +32,7 @@ public class SiteMapPlugin extends AbstractJBakePlugin {
 
     @Override
     public void execute() {
-        File outputFile = new File(getOutputFolder().getPath() + File.separator + "sitemapt.xml");
+        File outputFile = new File(getOutputFolder().getPath() + File.separator + "sitemap.xml");
         System.out.print("Rendering sitemap [" + outputFile + "]... ");
         Map<String, Object> model = new HashMap<String, Object>();
         model.put("published_posts", getCrawler().getPosts());
