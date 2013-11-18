@@ -111,6 +111,9 @@ public class Oven {
         final Crawler crawler;
         crawler = new Crawler(source, config);
         crawler.crawl(contentsPath);
+        
+         JBakePluginServiceFactory.getDefaultPluginService().invokePlugins(crawler, config, source, destination, assetsPath, templatesPath, contentsPath);
+        
         List<Map<String, Object>> pages = crawler.getPages();
         List<Map<String, Object>> posts = crawler.getPosts();
 
@@ -121,6 +124,8 @@ public class Oven {
 
         int renderedCount = 0;
         int errorCount = 0;
+        
+
 
         // render all pages
         for (Map<String, Object> page : pages) {
@@ -165,7 +170,7 @@ public class Oven {
             renderer.renderTags(crawler.getPostsByTags(), config.getString("tag.path"));
         }
 
-        JBakePluginServiceFactory.getDefaultPluginService().invokePlugins(crawler, config, source, destination, assetsPath, templatesPath, contentsPath);
+       
 
         // copy assets
         Asset asset = new Asset(source, destination);

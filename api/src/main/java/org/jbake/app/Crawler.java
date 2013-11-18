@@ -60,6 +60,7 @@ public class Crawler {
                         fileContents.put("file", content.getPath());
                         String uri = content.getPath().replace(source.getPath() + File.separator + config.getString("content.folder"), "");
                         uri = uri.substring(0, uri.lastIndexOf("."));
+                        uri = uri.replaceAll("\\\\", "/");
                         fileContents.put("uri", uri + config.getString("output.extension"));
                         if (fileContents.get("type").equals("page")) {
                             pages.add(fileContents);

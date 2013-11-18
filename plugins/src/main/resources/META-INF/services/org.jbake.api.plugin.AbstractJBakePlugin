@@ -1,3 +1,4 @@
 org.jbake.plugin.sitemap.SiteMapPlugin
 org.jbake.plugin.archive.ArchivePlugin
 org.jbake.plugin.feed.FeedPlugin
+org.jbake.plugin.gpcomments.GooglePlusCommentsPlugin
